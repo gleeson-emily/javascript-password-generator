@@ -20,26 +20,28 @@ var includeNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     do { 
     {
       var passLength = prompt("How long should your password be?");
-      var specialPrompt = prompt("Do you want to include special characters?");
-      var capitalPrompt = prompt("Do you want to include uppercase characters?");
-      var lowerPrompt = prompt("Do you want to include lowercase characters?");
-      var numbersPrompt = prompt("Do you want to include numerical characters?");
+      var specialPrompt = confirm("Do you want to include special characters?");
+      var capitalPrompt = confirm("Do you want to include uppercase characters?");
+      var lowerPrompt = confirm("Do you want to include lowercase characters?");
+      var numbersPrompt = confirm("Do you want to include numerical characters?");
       var promptResponses = { 
         passLength, 
         specialPrompt, 
         capitalPrompt, 
         lowerPrompt, 
         numbersPrompt };
-      } {
-        if (passLength < 8 || passLength > 128); {
-          alert("Your password must be between 8 and 128 characters long./nPlease enter a length between 8 and 128 characters.");
-        } if ((specialPrompt != valid && capitalPrompt != valid && lowerPrompt != valid && numbersPrompt != valid)) {
-          alert("You can't create a password with no characters! /nPlease select at least one class of characters.");
-        } else 
-        { validChoice = true;
-        }
-      }
-    } while (!validChoice) {
+      } // {
+       // if (passLength < 8 && passLength > 128); {
+       //   alert("Your password must be between 8 and 128 characters long. Please enter a length between 8 and 128 characters.");
+       //  ;
+       // }
+        
+   // if ((specialPrompt != validChoice && capitalPrompt != validChoice && lowerPrompt != validChoice && numbersPrompt != validChoice)) {
+         // alert("You can't create a password with no characters! Please select at least one class of characters.");
+        } 
+       // }*
+    //  }
+    while (!validChoice) {
       return promptResponses;
     }
   } 
@@ -48,7 +50,27 @@ function generatePassword() {
  var passCharacters = [];
  var generatedPassword = "";
 
- 
+ if (promptResponses.specialPrompt) {
+   for (var x of specialCharacters)
+   passCharacters.push(x);
+ }
+
+if (promptResponses.capitalPrompt) {
+  for (var x of capitalCharacters)
+  passCharacters.push(x);
+}
+if (promptResponses.lowerPrompt) {
+  for (var x of lowerCase)
+  passCharacters.push(x);
+}
+if (promptResponses.numbersPrompt) {
+  for (var x of includeNumbers)
+  passCharacters.push(x);
+}
+for (var x = 0; x < promptResponses.passLength; x++ ) {
+  generatedPassword += passCharacters[Math.floor(Math.random() * passCharacters.length)];
+}
+return generatedPassword;
 }
 
 
