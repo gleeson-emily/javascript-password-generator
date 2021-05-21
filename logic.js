@@ -16,10 +16,10 @@ var includeNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 //var passwordsNoNumbers = specialCharacters.concat(capitalCharacters, lowerCase);
 
  function answerQuestions() {
-    var validChoice = false;
+    var validChoice = true;
     do { 
     {
-      var passLength = prompt("How long should your password be?");
+      var passLength = prompt("How long should your password be?", "8-128");
       var specialPrompt = confirm("Do you want to include special characters?");
       var capitalPrompt = confirm("Do you want to include uppercase characters?");
       var lowerPrompt = confirm("Do you want to include lowercase characters?");
@@ -30,57 +30,59 @@ var includeNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
         capitalPrompt, 
         lowerPrompt, 
         numbersPrompt };
-      } // {
-       // if (passLength < 8 && passLength > 128); {
-       //   alert("Your password must be between 8 and 128 characters long. Please enter a length between 8 and 128 characters.");
-       //  ;
-       // }
-        
-   // if ((specialPrompt != validChoice && capitalPrompt != validChoice && lowerPrompt != validChoice && numbersPrompt != validChoice)) {
-         // alert("You can't create a password with no characters! Please select at least one class of characters.");
-        } 
-       // }*
-    //  }
-    while (!validChoice) {
+      } {
+        if ((passLength < 8 && passLength > 128)) {
+       alert("Your password must be between 8 and 128 characters long. Please enter a length between 8 and 128 characters.");
+       };
+          } {
+      if ((specialPrompt != validChoice && capitalPrompt != validChoice && lowerPrompt != validChoice && numbersPrompt != validChoice)) {
+         alert("You can't create a password with no characters! Please select at least one class of characters.");
+        } };
+      } 
+  while (!validChoice) {
       return promptResponses;
     }
-  } 
+  }
+
+
+  //this function grabs the answers from 
 function generatePassword() {
- var questions = answerQuestions();
+ var options = answerQuestions();
  var passCharacters = [];
  var generatedPassword = "";
 
- if (promptResponses.specialPrompt) {
+ if (options.specialPrompt) {
    for (var x of specialCharacters)
    passCharacters.push(x);
  }
 
-if (promptResponses.capitalPrompt) {
+if (options.capitalPrompt) {
   for (var x of capitalCharacters)
   passCharacters.push(x);
 }
-if (promptResponses.lowerPrompt) {
+if (options.lowerPrompt) {
   for (var x of lowerCase)
   passCharacters.push(x);
 }
-if (promptResponses.numbersPrompt) {
+if (options.numbersPrompt) {
   for (var x of includeNumbers)
   passCharacters.push(x);
 }
-for (var x = 0; x < promptResponses.passLength; x++ ) {
+console.log(options)
+for (var x = 0; x < options.passLength; x++ ) {
   generatedPassword += passCharacters[Math.floor(Math.random() * passCharacters.length)];
-}
-return generatedPassword;
-}
+} 
+ return generatedPassword;
+};
 
-
-  function writePassword() {
+function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
   
     passwordText.value = password;
   
   }
-  
+
   // Add event listener to generate button
   generateBtn.addEventListener("click", writePassword);
+  
