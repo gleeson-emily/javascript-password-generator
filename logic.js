@@ -1,25 +1,16 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
-
-
-
 var specialCharacters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "]", "[", "^", "_", "`", "{", "|", "}", "~"];
 var capitalCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var includeNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-//var passwordsAllYes = specialCharacters.concat(capitalCharacters, lowerCase, includeNumbers);
-//var passwordsNoSpecial = capitalCharacters.concat(lowerCase, includeNumbers);
-//var passwordsNoCapitals = specialCharacters.concat(lowerCase, includeNumbers);
-//var passwordsNoLower = specialCharacters.concat(capitalCharacters, includeNumbers);
-//var passwordsNoNumbers = specialCharacters.concat(capitalCharacters, lowerCase);
 
  function answerQuestions() {
     var validChoice = true;
     do { 
     {
-      var passLength = prompt("How long should your password be?", "8-128");
+      var passLength = prompt("How long should your password be?");
       var specialPrompt = confirm("Do you want to include special characters?");
       var capitalPrompt = confirm("Do you want to include uppercase characters?");
       var lowerPrompt = confirm("Do you want to include lowercase characters?");
@@ -45,7 +36,7 @@ var includeNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   }
 
 
-  //this function grabs the answers from 
+  //this function grabs the answers from answerQuestions and arranges them into an array based on the choices selected
 function generatePassword() {
  var options = answerQuestions();
  var passCharacters = [];
